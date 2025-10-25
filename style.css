@@ -17,7 +17,9 @@ body {
     color: var(--text-color);
 }
 
-
+html {
+    scroll-behavior: smooth;
+}
 
 .header__nav {
     display: flex;
@@ -25,6 +27,7 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    animation: fadeIn 1s ease-in;
 }
 
 .header__logo {
@@ -42,6 +45,11 @@ body {
     color: var(--black);
     text-decoration: none;
     font-size: 1.4rem;
+    transition: color 0.3s;
+}
+
+.header__link:hover {
+    color: var(--primary-color);
 }
 
 .hero {
@@ -63,6 +71,7 @@ body {
 .hero__content {
     flex: 1;
     max-width: 50%;
+    animation: slideUp 1s ease-out 0.3s backwards;
 }
 
 .hero__title {
@@ -85,6 +94,12 @@ body {
     cursor: pointer;
     font-size: 1.6rem;
     margin-top: 3rem;
+    transition: all 0.3s;
+}
+
+.hero__button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .hero__image {
@@ -131,12 +146,23 @@ body {
     padding: 1rem;
     border-radius: 10px;
     text-align: center;
+    transition: all 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .product-card__image {
     width: 100%;
     max-width: 200px;
     margin-bottom: 1rem;
+    transition: transform 0.3s;
+}
+
+.product-card:hover .product-card__image {
+    transform: scale(1.1);
 }
 
 .product-card__title {
@@ -150,6 +176,12 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.product-card__button:hover {
+    background-color: #FFD699;
+    transform: scale(1.05);
 }
 
 .rules {
@@ -178,12 +210,22 @@ body {
 .rules__image {
     flex: 1;
     max-width: 500px;
+    transition: transform 0.5s;
+}
+
+.rules__image:hover {
+    transform: scale(1.05);
 }
 
 .hamburger-menu {
     display: none;
     cursor: pointer;
     z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.hamburger-menu:hover {
+    transform: scale(1.1);
 }
 
 .hamburger-menu svg {
@@ -223,11 +265,20 @@ body {
     text-align: center;
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(50px);
 }
+
+.mobile-menu.active .mobile-menu__link {
+    animation: slideIn 0.5s ease forwards;
+}
+
+.mobile-menu.active .mobile-menu__link:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu.active .mobile-menu__link:nth-child(2) { animation-delay: 0.2s; }
+.mobile-menu.active .mobile-menu__link:nth-child(3) { animation-delay: 0.3s; }
 
 .mobile-menu__link:hover {
     background: rgba(255, 255, 255, 0.2);
-    padding-left: 2rem;
 }
 
 .footer {
@@ -242,6 +293,44 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+.footer__container > div {
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.footer__container > div:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
 
 @media (max-width: 768px) {
     .hero {
@@ -302,30 +391,5 @@ body {
 
     .hamburger-menu {
         display: block;
-    }
-
-    .hamburger-menu {
-        cursor: pointer;
-    }
-
-    .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .mobile-menu.active {
-        display: block;
-    }
-
-    .mobile-menu__link {
-        display: block;
-        color: var(--black);
-        text-decoration: none;
-        padding: 1rem;
     }
 }
